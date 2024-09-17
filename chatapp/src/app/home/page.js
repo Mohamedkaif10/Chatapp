@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 const Home = () => {
   return (
@@ -8,14 +8,14 @@ const Home = () => {
         <h1 className="text-3xl font-semibold mb-8">Welcome</h1>
         <div className="space-y-4">
           <Link href="/login">
-            <button className="block w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">
+            <a className="block w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">
               Login
-            </button>
+            </a>
           </Link>
           <Link href="/register">
-            <button className="block w-full bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400">
+            <a className="block w-full bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400">
               Sign Up if you are not registered
-            </button>
+            </a>
           </Link>
         </div>
       </div>
