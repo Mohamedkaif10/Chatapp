@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const OnlineUsers = () => {
-  const [users, setUsers] = useState([]);
+const OnlineUsers = ({ onSelectUser }) => {
+  const [onlineUsers, setOnlineUsers] = useState([]);
 
   useEffect(() => {
     const fetchOnlineUsers = async () => {
       try {
-        const response = await fetch(
+        const response = await axios.get(
           "http://localhost:8000/api/users/online-users"
         );
-        if (response.ok) {
-          const data = await response.json();
-          setUsers(data);
-        } else {
-          console.error("Failed to fetch online users");
-        }
+        setOnlineUsers(response.data);
       } catch (error) {
-        console.error("An error occurred:", error);
+        console.error("Error fetching online users:", error);
       }
     };
 
@@ -24,14 +20,22 @@ const OnlineUsers = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white p-4">
-      <h3 className="text-lg font-semibold mb-4">Online Users</h3>
-      <ul className="space-y-2">
-        {users.map((user, index) => (
-          <li key={index} className="mb-2">
-            {user.username}
-          </li>
-        ))}
+    <div className="bg-black p-4 rounded-lg shadow-lg w-48 ml-4 text-white">
+      <h3 className="text-xl font-semibold mb-4">Online Users</h3>
+      <ul>
+        {onlineUsers.length > 0 ? (
+          onlineUsers.map((user) => (
+            <li
+              key={user.id}
+              className="cursor-pointer mb-2 bg-green-800 p-2 rounded"
+              onClick={() => onSelectUser(user)}
+            >
+              {user.username}
+            </li>
+          ))
+        ) : (
+          <li>No users online</li>
+        )}
       </ul>
     </div>
   );
