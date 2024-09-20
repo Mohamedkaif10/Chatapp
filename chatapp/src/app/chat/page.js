@@ -113,8 +113,8 @@ const Chat = () => {
 
   return (
     <Fragment>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+      <div className="flex items-start justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-8">
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-3xl">
           <h2 className="text-2xl font-semibold text-center mb-6 text-black dark:text-white">
             {recipient
               ? `Chat with ${recipient.username}`
@@ -139,6 +139,7 @@ const Chat = () => {
             handleStopTyping={handleStopTyping}
           />
         </div>
+
         <OnlineUsers onSelectUser={handleSelectUser} />
       </div>
     </Fragment>
