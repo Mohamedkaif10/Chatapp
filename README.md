@@ -1,5 +1,4 @@
-
-# Chat Application Frontend
+# KumoTalk Frontend
 
 This is the frontend for the **Real-Time Chat Application** using **React**, **Socket.IO**, and **Tailwind CSS**. The frontend allows users to join the chat, send messages, and switch between group chat and private chat with online users.
 
@@ -89,4 +88,4 @@ Ensure that the backend server (Socket.IO) is running on the same endpoint (\`ht
 - **Socket Connection Issues**: Make sure the backend server is running and the \`ENDPOINT\` is configured correctly in the frontend.
 - **Token Issues**: Ensure the JWT token is stored in \`localStorage\` under the key \`token\` and is valid.
   
-
+# Mohamed Kaif , Indian Institute Of Technoology Hyderabad , Industrial chemistry
