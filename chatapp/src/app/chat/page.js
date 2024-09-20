@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useEffect, Fragment } from "react";
+import { useRouter } from "next/navigation"; 
 import io from "socket.io-client";
 import OnlineUsers from "./online";
 import ChatWindow from "./chatWindow";
 import MessageInput from "./messageInput";
 import ChatControls from "./chatControls";
+
 const ENDPOINT = "http://localhost:8000";
 
 const Chat = () => {
@@ -16,14 +18,18 @@ const Chat = () => {
   const [typing, setTyping] = useState(false);
   const [username, setUsername] = useState("");
 
+  const router = useRouter(); 
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    const decodedToken = JSON.parse(atob(token.split(".")[1]));
-    const loggedInUsername = decodedToken.user.username;
-    setUsername(loggedInUsername);
+    if (!token) {
+      router.push("/login");
+    } else {
+      const decodedToken = JSON.parse(atob(token.split(".")[1]));
+      const loggedInUsername = decodedToken.user.username;
+      setUsername(loggedInUsername);
 
-    if (token) {
       const socketInstance = io(ENDPOINT, {
         query: { token },
         transports: ["websocket", "polling"],
@@ -42,6 +48,7 @@ const Chat = () => {
       socketInstance.on("disconnect", (reason) => {
         console.log("Socket disconnected:", reason);
       });
+
       socketInstance.on("message", (newMessage) => {
         setMessages((prevMessages) => [...prevMessages, newMessage]);
       });
@@ -61,10 +68,8 @@ const Chat = () => {
       return () => {
         socketInstance.disconnect();
       };
-    } else {
-      console.error("JWT token is missing!");
     }
-  }, []);
+  }, [router]); 
 
   const handleTyping = () => {
     if (socket && recipient) {
@@ -139,8 +144,9 @@ const Chat = () => {
             handleStopTyping={handleStopTyping}
           />
         </div>
-
-        <OnlineUsers onSelectUser={handleSelectUser} />
+        <div className="w-64">
+          <OnlineUsers onSelectUser={handleSelectUser} />
+        </div>
       </div>
     </Fragment>
   );

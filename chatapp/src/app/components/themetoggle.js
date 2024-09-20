@@ -1,45 +1,62 @@
-import React, { useState, useEffect } from "react";
+"use client";
+import { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme === "dark") {
+    // Check the user's theme preference from local storage or system preferences
+    const userPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark" || (!savedTheme && userPrefersDark)) {
+      setIsDark(true);
       document.documentElement.classList.add("dark");
-      setIsDarkMode(true);
-    } else if (storedTheme === "light") {
-      document.documentElement.classList.remove("dark");
-      setIsDarkMode(false);
-    } else {
-      const systemPrefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      if (systemPrefersDark) {
-        document.documentElement.classList.add("dark");
-        setIsDarkMode(true);
-      }
     }
   }, []);
 
   const toggleTheme = () => {
-    if (isDarkMode) {
+    if (isDark) {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     } else {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
     }
-    setIsDarkMode(!isDarkMode);
+    setIsDark(!isDark);
   };
 
   return (
-    <button
+    <div
+      className={`relative w-24 h-12 bg-gray-300 rounded-full p-2 flex items-center justify-between transition-colors ${
+        isDark ? "bg-gray-600" : "bg-blue-400"
+      }`}
       onClick={toggleTheme}
-      className="bg-gray-300 dark:bg-gray-700 text-black dark:text-white px-4 py-2 rounded"
     >
-      {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-    </button>
+      {/* Text for light mode */}
+      <span
+        className={`text-sm ${isDark ? "text-gray-500" : "text-black"} ml-2`}
+      >
+        Light
+      </span>
+
+      {/* Text for dark mode */}
+      <span
+        className={`text-sm ${
+          isDark ? "text-white mr-2" : "text-gray-400"
+        } mr-2`}
+      >
+        Dark
+      </span>
+
+      <div
+        className={`absolute right-2 w-8 h-8 bg-white rounded-full transition-transform transform ${
+          isDark ? "-translate-x-16" : ""
+        }`}
+      ></div>
+    </div>
   );
 };
 

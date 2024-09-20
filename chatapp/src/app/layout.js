@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   return (
     <html lang="en">
       <head>
-        <title>Chat Application</title>
+        <title>KumoTalk</title>
       </head>
       <body className="bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
         <Header />
