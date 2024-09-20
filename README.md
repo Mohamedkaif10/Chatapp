@@ -33,8 +33,8 @@ Before you begin, ensure you have met the following requirements:
 First, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/mohamedkaif10/chat-frontend.git
-cd chat-frontend
+git clone https://github.com/mohamedkaif10/chatapp.git
+cd chatapp
 ```
 
 ### 2. Install Dependencies
@@ -68,24 +68,25 @@ This will start the development server, and the app should be accessible at \`ht
 
 Ensure that the backend server (Socket.IO) is running on the same endpoint (\`http://localhost:8000\`) or update the \`ENDPOINT\` variable in the \`Chat.js\` file if your backend is hosted elsewhere.
 
-
-
 ## Usage
 
 ### Group Chat
+
 - After logging in, you can send messages to all connected users via the group chat.
 - Messages appear immediately in the chat window, and you can see who is online.
 
 ### Private Chat
+
 - To start a private chat, click on any user in the **Online Users** list.
 - You can return to the group chat at any time by clicking the "Back to Group Chat" button.
 
 ### Typing Indicator
+
 - When someone is typing, a "user is typing..." indicator will appear below the chat window.
 
 ## Troubleshooting
 
 - **Socket Connection Issues**: Make sure the backend server is running and the \`ENDPOINT\` is configured correctly in the frontend.
 - **Token Issues**: Ensure the JWT token is stored in \`localStorage\` under the key \`token\` and is valid.
-  
+
 # Mohamed Kaif , Indian Institute Of Technoology Hyderabad , Industrial chemistry
