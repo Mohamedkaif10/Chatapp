@@ -89,4 +89,7 @@ Ensure that the backend server (Socket.IO) is running on the same endpoint (\`ht
 - **Socket Connection Issues**: Make sure the backend server is running and the \`ENDPOINT\` is configured correctly in the frontend.
 - **Token Issues**: Ensure the JWT token is stored in \`localStorage\` under the key \`token\` and is valid.
 
+<img width="1418" alt="Screenshot 2024-09-20 at 10 04 52 PM" src="https://github.com/user-attachments/assets/cb57409b-eb48-42c9-b261-ed6cdf736ebf">
+
+
 # Mohamed Kaif , Indian Institute Of Technoology Hyderabad , Industrial chemistry
