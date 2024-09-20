@@ -20,21 +20,21 @@ const OnlineUsers = ({ onSelectUser }) => {
   }, []);
 
   return (
-    <div className="bg-black p-4 rounded-lg shadow-lg w-48 ml-4 text-white">
+    <div className="bg-black dark:bg-gray-800 p-4 rounded-lg shadow-lg w-48 ml-4 text-white dark:text-gray-300">
       <h3 className="text-xl font-semibold mb-4">Online Users</h3>
       <ul>
         {onlineUsers.length > 0 ? (
           onlineUsers.map((user) => (
             <li
               key={user.id}
-              className="cursor-pointer mb-2 bg-green-800 p-2 rounded"
+              className="cursor-pointer mb-2 bg-green-800 dark:bg-green-600 p-2 rounded hover:bg-green-700 dark:hover:bg-green-500"
               onClick={() => onSelectUser(user)}
             >
               {user.username}
             </li>
           ))
         ) : (
-          <li>No users online</li>
+          <li className="text-white dark:text-gray-300">No users online</li>
         )}
       </ul>
     </div>

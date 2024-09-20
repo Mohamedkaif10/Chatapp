@@ -8,7 +8,7 @@ const ChatWindow = ({
   username,
 }) => {
   return (
-    <div className="chat-box overflow-y-auto h-64 mb-4 border p-4 text-black">
+    <div className="chat-box overflow-y-auto h-64 mb-4 border p-4 text-black dark:text-white bg-white dark:bg-gray-800">
       {recipient
         ? privateMessages.map((msg, index) => (
             <div key={index} className="mb-2">
@@ -31,7 +31,7 @@ const ChatWindow = ({
           ))}
 
       {typing && recipient && (
-        <p className="text-sm italic text-gray-500">
+        <p className="text-sm italic text-gray-500 dark:text-gray-300">
           {recipient.username} is typing...
         </p>
       )}
